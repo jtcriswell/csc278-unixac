@@ -1,5 +1,6 @@
 /*
  * Skeleton code for Unix Access Control assignment
+ * Students *MUST NOT* edit this file!
  */
 
 #define _GNU_SOURCE
@@ -11,10 +12,10 @@
 #include <fcntl.h>
 #include <sys/types.h>
 
-/* Define constants for the three user IDs */
-static const uid_t jim  = 10;
-static const uid_t john = 20;
-static const uid_t judy = 30;
+#include "openfile.h"
+
+/* Function Prototypes */
+extern int makeAccessWork (char * dir1, char * dir2, char * pathname);
 
 /*
  * Function: getdirname()
@@ -92,6 +93,11 @@ getdirname (char * pathname, unsigned int components) {
  */
 int
 main (int argc, char ** argv) {
+	/* Pathname components of input pathname */
+	char * dir1;
+	char * dir2;
+	char * pathname;
+
 	/* File descriptor for the file we will open */
 	int fd;
 
@@ -135,16 +141,23 @@ main (int argc, char ** argv) {
 	}
 
 	/*
-	 * TODO: Students should insert their code here so that the subsequent
-	 * call to open() succeeds.
+	 * Break up the pathname into the two parent directories and the
+	 * complete pathname.
 	 */
-	printf ("%s\n", getdirname(argv[1], 1));
-	printf ("%s\n", getdirname(argv[1], 2));
+	dir1 = getdirname(argv[1], 1);
+	dir2 = getdirname(argv[1], 2);
+	pathname = argv[1];
+
+	/*
+	 * Call the function which will permit the subsequent open() call to
+	 * succeed.
+	 */
+	makeAccessWork (dir1, dir2, pathname);
 
 	/*
 	 * Open the file.
 	 */
-	if ((fd = open (argv[1], O_RDWR)) == -1) {
+	if ((fd = open (pathname, O_RDWR)) == -1) {
 		perror ("Failed to open file");
 		return 1;
 	} else {
