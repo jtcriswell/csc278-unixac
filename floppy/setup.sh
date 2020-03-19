@@ -18,9 +18,9 @@ touch /home/dir2/file
 #
 # Next, set the owners, groups, and permissions of the directories and files
 #
-chown 20:100 /home
-chown 10:100 /home/dir1
-chown 30:100 /home/dir1/file
+chown 20:101 /home
+chown 10:101 /home/dir1
+chown 30:101 /home/dir1/file
 chmod 0100 /home
 chmod 0000 /home/dir1
 chmod 0000 /home/dir1/file

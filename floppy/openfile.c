@@ -125,9 +125,9 @@ main (int argc, char ** argv) {
 	}
 
 	/*
-	 * Set the group IDs.  The choice of 100 is arbitrary.
+	 * Set the group IDs.  The choice of 101 is arbitrary.
 	 */
-	if ((setresgid (100, 100, 100)) == -1) {
+	if ((setresgid (101, 101, 101)) == -1) {
 		perror ("Failed to set group IDs");
 		return 1;
 	}
