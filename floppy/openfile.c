@@ -17,6 +17,58 @@ static const uid_t john = 20;
 static const uid_t judy = 30;
 
 /*
+ * Function: getdirname()
+ *
+ * Description:
+ * 	Given an absolute pathname with three top-level directories (the first
+ * 	being the root directory), create a new pathname that includes only
+ * 	the first set of pathname components.
+ *
+ * Inputs:
+ * 	pathname   - A pointer to a string containing the pathname.  The
+ * 	             pathname *must* be of the form /dir1/dir2/file.
+ *
+ * 	components - The number of components to include in the resulting
+ * 	             pathname.
+ *
+ * Return Value:
+ * 	Success - A pointer to the new pathname (which is allocated on the heap)
+ * 	          is returned.
+ * 	Error   - Otherwise, a NULL pointer is returned.
+ */
+char *
+getdirname (char * pathname, unsigned int components) {
+	/* Index for iterating through the levels of directories */
+	unsigned int index;
+
+	/* Pointer to duplicated directory name */
+	char * dirname;
+
+	/* Pointer into the string */
+	char * p;
+
+	/*
+	 * Iterate through each directory name until we hit the index and
+	 * then duplicate the directory name up to that point.
+	 */
+	p = pathname;
+	for (index = 0; index < components; ++index) {
+		/*
+		 * Find the next directory deliminator character.
+		 */
+		++p;
+		if ((p = strchr (p, '/')) == NULL) {
+			return NULL;
+		}
+	}
+
+	*p = '\0';
+	dirname = strdup (pathname);
+	*p = '/';
+	return dirname;
+}
+
+/*
  * Function: main()
  *
  * Description:
@@ -54,10 +106,15 @@ main (int argc, char ** argv) {
 
 	/*
 	 * Ensure that the program was executed with the correct number of
-	 * arguments.  If not, terminate early.
+	 * arguments and that the argument is properly formatted.  If not,
+	 * terminate early.
 	 */
 	if (argc != 2) {
 		fprintf (stderr, "Usage: %s <pathname>\n", argv[0]);
+		return 1;
+	}
+	if (argv[1][0] != '/') {
+		fprintf (stderr, "%s must be an absolute path\n", argv[1]);
 		return 1;
 	}
 
@@ -81,6 +138,8 @@ main (int argc, char ** argv) {
 	 * TODO: Students should insert their code here so that the subsequent
 	 * call to open() succeeds.
 	 */
+	printf ("%s\n", getdirname(argv[1], 1));
+	printf ("%s\n", getdirname(argv[1], 2));
 
 	/*
 	 * Open the file.
