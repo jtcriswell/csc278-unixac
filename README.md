@@ -1,7 +1,8 @@
-# csc278-mp3
-Files for the CSC278/478 Machine Problem 3 (MP3)
+# csc278-unixac
+Files for the CSC278/478 Unix Access Control Project
 
-This repository contains skeleton source code and helper scripts for MP3.
+This repository contains skeleton source code and helper scripts for the Unix
+ACcess Control Project.
 
 Students will need the OpenWRT hard disk image. The getfiles.sh script will download and unpack these files from the course web page. In case students want to get the files by hand, the information is below:
 
@@ -19,6 +20,7 @@ o mount -t msdos /dev/sdb1 /mnt
 
 The contents of hard disk should appear in /mnt.
 
-Be sure to use the following command to unmount the hard disk device before shutting down the virtual machine:
+Be sure to use the following command to unmount the hard disk device before shutting down the virtual machine with the poweroff command:
 
 o umount /mnt
+o poweroff
