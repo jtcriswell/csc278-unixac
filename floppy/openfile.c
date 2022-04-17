@@ -133,7 +133,7 @@ main (int argc, char ** argv) {
 	}
 
 	/*
-	 * Simulate executing two setuid binaries as described in Quiz 3.
+	 * Simulate executing two setuid binaries as described in lecture.
 	 */
 	if ((setresuid (john, judy, jim)) == -1) {
 		perror ("Failed to set user IDs");
@@ -183,7 +183,7 @@ main (int argc, char ** argv) {
 		}
 
 		if ((write (fd, output, strlen (output))) == -1) {
-			perror ("Failed to read file");
+			perror ("Failed to write file");
 			return 1;
 		}
 	}
