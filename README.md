@@ -23,10 +23,12 @@ The contents of hard disk should appear in /mnt.
 Be sure to use the following command to unmount the hard disk device before shutting down the virtual machine with the poweroff command:
 
 o umount /mnt
+
 o poweroff
 
 Students should note that the virtual machine does not include a compiler; this is to keep the disk image small.  Students should compile their code on the host machine; they can do this by changing into the floppy directory and typing make:
 
 o cd floppy
+
 o make
 
