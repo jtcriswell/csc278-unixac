@@ -157,7 +157,7 @@ main (int argc, char ** argv) {
 	/*
 	 * Open the file.
 	 */
-	if ((fd = open (pathname, O_RDWR)) == -1) {
+	if ((fd = open (pathname, O_RDWR | O_CREAT, 0644)) == -1) {
 		perror ("Failed to open file");
 		return 1;
 	} else {

@@ -15,7 +15,6 @@ mkdir -p /home/dir2
 mkdir -p /home/dir3
 touch /home/dir1/file
 touch /home/dir2/file
-touch /home/dir3/file
 
 #
 # Next, set the owners, groups, and permissions of the directories and files
@@ -34,10 +33,8 @@ chmod 0000 /home/dir2
 chmod 0000 /home/dir2/file
 
 chown 10:50 /home/dir3
-chown 100:50 /home/dir3/file
 chmod 0100 /home
 chmod 0000 /home/dir3
-chmod 0004 /home/dir3/file
 
 #
 # Add entries to /etc/passwd and /etc/group to make output readable
